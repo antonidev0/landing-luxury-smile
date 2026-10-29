@@ -6,7 +6,7 @@ import { treatments } from '../data/clinic';
 <section id="tratamientos" class="treatments reveal" aria-labelledby="tratamientos-title">
 	<header class="treatments__head">
 		<p class="eyebrow">Tratamientos</p>
-		<h2 id="tratamientos-title">Lo que podemos hacer por ti</h2>
+		<h2 id="tratamientos-title" class="text-gradient">Lo que podemos hacer por ti</h2>
 		<p class="treatments__lead">
 			Odontología y medicina estética en una misma clínica, con un plan explicado paso a paso.
 		</p>
@@ -82,14 +82,17 @@ import { treatments } from '../data/clinic';
 		flex-direction: column;
 		padding: 8px;
 		border-radius: 24px;
-		background: var(--surface);
+		background: color-mix(in srgb, var(--surface) 72%, transparent);
 		border: 1px solid var(--line);
 		box-sizing: border-box;
-		transition: transform 500ms var(--ease);
+		transition:
+			transform 500ms var(--ease),
+			border-color 300ms var(--ease);
 	}
 
 	.treatment:hover {
 		transform: translateY(-4px);
+		border-color: color-mix(in srgb, var(--accent) 40%, transparent);
 	}
 
 	/* Radio interior = 24px del borde exterior − 8px de separación. */
@@ -100,7 +103,7 @@ import { treatments } from '../data/clinic';
 		aspect-ratio: 4 / 3;
 		object-fit: cover;
 		border-radius: 16px;
-		background: var(--line);
+		background: var(--surface-raised);
 	}
 
 	.treatment__body {
@@ -115,7 +118,7 @@ import { treatments } from '../data/clinic';
 		font-size: 0.75rem;
 		line-height: 1rem;
 		font-weight: 600;
-		color: var(--ink-soft);
+		color: var(--accent);
 	}
 
 	.treatment__name {
