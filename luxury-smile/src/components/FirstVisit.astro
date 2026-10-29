@@ -25,7 +25,7 @@ const steps = [
 	<ol class="visit__steps">
 		{
 			steps.map((s, i) => (
-				<li class="visit__step">
+				<li class="visit__step stagger" style={`--i: ${i}`}>
 					<span class="visit__num" aria-hidden="true">
 						{String(i + 1).padStart(2, '0')}
 					</span>
@@ -49,51 +49,44 @@ const steps = [
 	}
 
 	.visit__head h2 {
-		margin: 12px 0 0;
-		font-size: 3rem;
+		margin: 24px 0 0;
+		font-size: 3.75rem;
 		line-height: 1;
-		font-weight: 700;
-		letter-spacing: -0.02em;
 	}
 
 	.visit__steps {
 		list-style: none;
-		margin: 64px 0 0;
+		margin: 80px 0 0;
 		padding: 0;
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 24px;
+		gap: 48px;
 	}
 
+	/* Sin cajas: un filete arriba y un número grande y fino. */
 	.visit__step {
-		padding: 32px;
-		border-radius: 24px;
-		background: color-mix(in srgb, var(--surface) 72%, transparent);
-		border: 1px solid var(--line);
+		padding-top: 32px;
+		border-top: 1px solid var(--line-strong);
 	}
 
 	.visit__num {
-		display: inline-grid;
-		place-items: center;
-		width: 40px;
-		height: 40px;
-		border-radius: 9999px;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-		font-weight: 700;
-		color: var(--accent-ink);
-		background: var(--accent);
+		display: block;
+		font-size: 4.5rem;
+		line-height: 1;
+		font-weight: 200;
+		letter-spacing: -0.03em;
+		font-variant-numeric: tabular-nums;
+		color: var(--accent);
 	}
 
 	.visit__step h3 {
-		margin: 24px 0 0;
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-		font-weight: 700;
+		margin: 32px 0 0;
+		font-size: 1.5rem;
+		line-height: 2rem;
 	}
 
 	.visit__step p {
-		margin: 8px 0 0;
+		margin: 12px 0 0;
 		font-size: 1rem;
 		line-height: 1.5rem;
 		color: var(--ink-soft);
@@ -101,7 +94,7 @@ const steps = [
 
 	@media (max-width: 860px) {
 		.visit {
-			padding: 64px 16px;
+			padding: 80px 16px;
 		}
 
 		.visit__head h2 {
@@ -112,6 +105,10 @@ const steps = [
 		.visit__steps {
 			margin-top: 48px;
 			grid-template-columns: 1fr;
+		}
+
+		.visit__num {
+			font-size: 3rem;
 		}
 	}
 </style>
