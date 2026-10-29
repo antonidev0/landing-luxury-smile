@@ -28,7 +28,17 @@ pnpm preview
 | Secciones normales: frase, tratamientos, contacto, pie | `src/components/*.astro` |
 | Páginas legales y 404 | `src/pages/aviso-legal.astro`, `privacidad.astro`, `404.astro` |
 
-Antes de publicar, cambia `site` en `astro.config.mjs` por el dominio real (se usa en `og:image` y en la URL canónica).
+## Publicar en Vercel
+
+El proyecto vive en la subcarpeta `luxury-smile/` del repositorio. En Vercel:
+
+1. **Add New → Project** e importa el repositorio `landing-luxury-smile`.
+2. En **Root Directory** elige `luxury-smile`. El resto (Astro, `pnpm install --frozen-lockfile`, `pnpm build`, salida `dist`) lo fija `vercel.json`.
+3. **Deploy**. Cada push a `main` vuelve a publicar; cada PR recibe su propia URL de vista previa.
+
+La URL canónica y `og:image` usan el dominio de producción que asigna Vercel. Si conectas un dominio propio, añade la variable de entorno `SITE_URL` (por ejemplo `https://luxurysmile.com`) en **Settings → Environment Variables** y vuelve a desplegar.
+
+`vercel.json` también da caché larga a `/_astro/*` (nombres con hash) y de una semana a `/videos/*`. `.vercelignore` deja fuera `higgs/` y `clips/`, que no se publican.
 
 Los valores que empiezan por `[Pendiente` se muestran marcados en la web hasta que se sustituyan por los datos reales. El botón «Contactar con la clínica» queda deshabilitado hasta que haya `phoneHref` o un email real.
 
