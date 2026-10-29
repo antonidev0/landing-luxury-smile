@@ -314,13 +314,15 @@ import { scenes } from '../data/scenes';
 	}
 
 	@media (max-width: 860px) {
-		/* En móvil la barra de progreso superior basta; los puntos tapaban el texto. */
+		/* En móvil basta la barra de progreso superior: los puntos tapaban el texto. */
 		.sw-route {
 			display: none;
 		}
 
+		/* Panel compacto anclado abajo para dejar ver el vídeo. */
 		.sw-copy {
 			width: auto;
+			max-width: 560px;
 			padding: 24px;
 			border-radius: 24px;
 		}
@@ -331,13 +333,49 @@ import { scenes } from '../data/scenes';
 
 		.sw-copy__title,
 		h1.sw-copy__title {
+			margin-top: 8px;
 			font-size: 1.875rem;
 			line-height: 2.25rem;
 		}
 
 		.sw-copy__body {
+			margin-top: 12px;
 			font-size: 1rem;
 			line-height: 1.5rem;
+		}
+
+		.sw-copy__tags {
+			margin-top: 16px;
+		}
+
+		.sw-copy__tags li {
+			padding: 4px 8px;
+			letter-spacing: 0.12em;
+		}
+
+		.sw-copy__cta {
+			margin-top: 24px;
+		}
+
+		.sw-btn {
+			padding: 12px 16px;
+		}
+
+		/* La pista «Desliza» chocaba con el panel: en móvil el propio panel invita a bajar. */
+		.sw-hint {
+			display: none;
+		}
+	}
+
+	/* Pantallas bajas (móvil apaisado o teléfonos pequeños): solo lo esencial. */
+	@media (max-width: 860px) and (max-height: 700px) {
+		.sw-copy__tags {
+			display: none;
+		}
+
+		.sw-copy__body {
+			font-size: 0.875rem;
+			line-height: 1.25rem;
 		}
 	}
 

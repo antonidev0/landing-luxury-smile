@@ -166,8 +166,58 @@ import { treatments } from '../data/clinic';
 
 		.treatments__grid {
 			margin-top: 48px;
+			gap: 48px 16px;
+		}
+	}
+
+	/* Teléfonos: lista compacta con la foto pequeña a la izquierda. */
+	@media (max-width: 600px) {
+		.treatments__grid {
 			grid-template-columns: 1fr;
-			gap: 48px;
+			gap: 0;
+		}
+
+		.treatment {
+			display: grid;
+			grid-template-columns: 96px 1fr;
+			grid-template-areas:
+				'media meta'
+				'media name'
+				'media desc'
+				'media link';
+			grid-template-rows: auto auto 1fr auto;
+			column-gap: 16px;
+			padding: 24px 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.treatment__media {
+			grid-area: media;
+			align-self: start;
+			border-radius: 12px;
+		}
+
+		.treatment__meta {
+			grid-area: meta;
+			margin: 0;
+			padding-bottom: 0;
+			border-bottom: 0;
+		}
+
+		.treatment__name {
+			grid-area: name;
+			margin-top: 4px;
+			font-size: 1.25rem;
+			line-height: 1.75rem;
+		}
+
+		.treatment__desc {
+			grid-area: desc;
+		}
+
+		.treatment__link {
+			grid-area: link;
+			padding-top: 12px;
 		}
 	}
 </style>
