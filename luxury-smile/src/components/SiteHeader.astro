@@ -1,0 +1,152 @@
+---
+// Cabecera flotante: HTML estático (funciona sin JS). El script solo marca el enlace
+// de la sección visible.
+import Logo from '../assets/brand/logo.svg';
+import { clinic } from '../data/clinic';
+
+const links = [
+	{ href: '#top', label: 'Recorrido', section: 'world' },
+	{ href: '#tratamientos', label: 'Tratamientos', section: 'tratamientos' },
+	{ href: '#contacto', label: 'Contacto', section: 'contacto' },
+];
+---
+
+<header class="header">
+	<div class="header__bar">
+		<a class="header__brand" href="#top" aria-label={`${clinic.name}, volver al inicio`}>
+			<Logo class="header__logo" aria-hidden="true" />
+		</a>
+		<nav class="header__nav" aria-label="Principal">
+			{
+				links.map((l, i) => (
+					<a class="header__link" href={l.href} data-section={l.section} aria-current={i === 0 ? 'true' : undefined}>
+						{l.label}
+					</a>
+				))
+			}
+		</nav>
+		<a class="header__cta" href="#contacto">Pedir cita</a>
+	</div>
+</header>
+
+<script>
+	// La sección actual es la última cuya parte superior ya pasó la mitad de la pantalla.
+	const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.header__link'));
+	const sections = links
+		.map((link) => ({ link, el: document.getElementById(link.dataset.section ?? '') }))
+		.filter((s): s is { link: HTMLAnchorElement; el: HTMLElement } => !!s.el);
+
+	const setCurrent = (current: HTMLAnchorElement) =>
+		links.forEach((l) => (l === current ? l.setAttribute('aria-current', 'true') : l.removeAttribute('aria-current')));
+
+	const io = new IntersectionObserver(
+		() => {
+			const mid = window.innerHeight / 2;
+			const passed = sections.filter((s) => s.el.getBoundingClientRect().top < mid);
+			setCurrent((passed.at(-1) ?? sections[0]).link);
+		},
+		{ rootMargin: '-50% 0px -50% 0px' },
+	);
+	sections.forEach((s) => io.observe(s.el));
+</script>
+
+<style>
+	.header {
+		position: fixed;
+		top: 16px;
+		left: 0;
+		right: 0;
+		z-index: 70;
+		display: flex;
+		justify-content: center;
+		padding: 0 16px;
+		pointer-events: none;
+	}
+
+	.header__bar {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		padding: 8px 8px 8px 24px;
+		border-radius: 9999px;
+		background: color-mix(in srgb, var(--surface) 72%, transparent);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+		box-shadow: 0 8px 32px color-mix(in srgb, var(--ink) 8%, transparent);
+		pointer-events: auto;
+	}
+
+	.header__brand {
+		display: flex;
+		color: var(--ink);
+		border-radius: 8px;
+	}
+
+	.header__logo {
+		height: 32px;
+		width: auto;
+	}
+
+	.header__nav {
+		display: flex;
+		gap: 4px;
+	}
+
+	.header__link {
+		padding: 8px 12px;
+		border-radius: 9999px;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 600;
+		color: var(--ink-soft);
+		text-decoration: none;
+		transition:
+			color 300ms var(--ease),
+			background-color 300ms var(--ease);
+	}
+
+	.header__link:hover {
+		color: var(--ink);
+	}
+
+	.header__link[aria-current='true'] {
+		color: var(--ink);
+		background: color-mix(in srgb, var(--ink) 6%, transparent);
+	}
+
+	.header__cta {
+		padding: 8px 16px;
+		border-radius: 9999px;
+		background: var(--ink);
+		color: #fff;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition: transform 300ms var(--ease);
+	}
+
+	.header__cta:hover {
+		transform: translateY(-2px);
+	}
+
+	.header__cta:active {
+		transform: scale(0.98);
+	}
+
+	@media (max-width: 860px) {
+		.header__nav {
+			display: none;
+		}
+
+		.header__bar {
+			gap: 16px;
+			padding-left: 16px;
+		}
+
+		.header__logo {
+			height: 24px;
+		}
+	}
+</style>

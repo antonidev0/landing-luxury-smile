@@ -1,43 +1,55 @@
 ---
+import { Image } from 'astro:assets';
 import { treatments } from '../data/clinic';
-
-const groups = [...new Set(treatments.map((t) => t.group))];
 ---
 
 <section id="tratamientos" class="treatments reveal" aria-labelledby="tratamientos-title">
 	<header class="treatments__head">
 		<p class="eyebrow">Tratamientos</p>
 		<h2 id="tratamientos-title">Lo que podemos hacer por ti</h2>
+		<p class="treatments__lead">
+			Odontología y medicina estética en una misma clínica, con un plan explicado paso a paso.
+		</p>
 	</header>
 
-	{
-		groups.map((group) => (
-			<div class="treatments__group">
-				<h3 class="treatments__group-title">{group}</h3>
-				<ul class="treatments__list">
-					{treatments
-						.filter((t) => t.group === group)
-						.map((t) => (
-							<li id={`tratamiento-${t.id}`} class="treatment">
-								<h4 class="treatment__name">{t.name}</h4>
-								<p class="treatment__desc">{t.description}</p>
-								<a class="treatment__link" href={t.href}>
-									Pedir información
-									<span class="visually-hidden"> sobre {t.name}</span>
-								</a>
-							</li>
-						))}
-				</ul>
-			</div>
-		))
-	}
+	<ul class="treatments__grid">
+		{
+			treatments.map((t) => (
+				<li id={`tratamiento-${t.id}`}>
+					<article class="treatment">
+						<Image
+							class="treatment__img"
+							src={t.image}
+							alt=""
+							widths={[320, 480, 640]}
+							sizes="(max-width: 860px) 100vw, 280px"
+							loading="lazy"
+						/>
+						<div class="treatment__body">
+							<p class="treatment__group">{t.group}</p>
+							<h3 class="treatment__name">{t.name}</h3>
+							<p class="treatment__desc">{t.description}</p>
+							<a class="treatment__link" href={t.href}>
+								Pedir información
+								<span class="visually-hidden"> sobre {t.name}</span>
+							</a>
+						</div>
+					</article>
+				</li>
+			))
+		}
+	</ul>
 </section>
 
 <style>
 	.treatments {
-		max-width: 1080px;
+		max-width: 1200px;
 		margin: 0 auto;
-		padding: 96px 16px;
+		padding: 96px 32px;
+	}
+
+	.treatments__head {
+		max-width: 680px;
 	}
 
 	.treatments__head h2 {
@@ -48,32 +60,66 @@ const groups = [...new Set(treatments.map((t) => t.group))];
 		letter-spacing: -0.02em;
 	}
 
-	.treatments__group {
-		display: grid;
-		grid-template-columns: 200px 1fr;
-		gap: 32px;
-		margin-top: 64px;
+	.treatments__lead {
+		margin: 16px 0 0;
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+		color: var(--ink-soft);
 	}
 
-	.treatments__group-title {
+	.treatments__grid {
+		list-style: none;
+		margin: 64px 0 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 24px;
+	}
+
+	.treatment {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		padding: 8px;
+		border-radius: 24px;
+		background: var(--surface);
+		border: 1px solid var(--line);
+		box-sizing: border-box;
+		transition: transform 500ms var(--ease);
+	}
+
+	.treatment:hover {
+		transform: translateY(-4px);
+	}
+
+	/* Radio interior = 24px del borde exterior − 8px de separación. */
+	.treatment__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		border-radius: 16px;
+		background: var(--line);
+	}
+
+	.treatment__body {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		padding: 16px 12px 12px;
+	}
+
+	.treatment__group {
 		margin: 0;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
+		font-size: 0.75rem;
+		line-height: 1rem;
 		font-weight: 600;
 		color: var(--ink-soft);
 	}
 
-	.treatments__list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 40px 32px;
-	}
-
 	.treatment__name {
-		margin: 0;
+		margin: 4px 0 0;
 		font-size: 1.25rem;
 		line-height: 1.75rem;
 		font-weight: 700;
@@ -81,14 +127,15 @@ const groups = [...new Set(treatments.map((t) => t.group))];
 
 	.treatment__desc {
 		margin: 8px 0 0;
-		font-size: 1rem;
-		line-height: 1.5rem;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
 		color: var(--ink-soft);
 	}
 
 	.treatment__link {
-		display: inline-block;
-		margin-top: 12px;
+		margin-top: auto;
+		padding-top: 16px;
+		align-self: flex-start;
 		font-size: 0.875rem;
 		line-height: 1.25rem;
 		font-weight: 600;
@@ -101,21 +148,25 @@ const groups = [...new Set(treatments.map((t) => t.group))];
 		transform: translateX(4px);
 	}
 
+	@media (max-width: 1100px) {
+		.treatments__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
 	@media (max-width: 860px) {
+		.treatments {
+			padding: 64px 16px;
+		}
+
 		.treatments__head h2 {
 			font-size: 2.25rem;
 			line-height: 2.5rem;
 		}
 
-		.treatments__group {
-			grid-template-columns: 1fr;
-			gap: 16px;
+		.treatments__grid {
 			margin-top: 48px;
-		}
-
-		.treatments__list {
 			grid-template-columns: 1fr;
-			gap: 32px;
 		}
 	}
 </style>

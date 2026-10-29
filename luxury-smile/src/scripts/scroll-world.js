@@ -69,6 +69,9 @@
      - Adds `sw-done` to the container once the film has been scrolled past, so the
        fixed layers can step aside for the regular page content below.
      - Returns { jumpTo(index) } so page links can target a scene.
+     - The copy drift uses the `translate` property so it no longer overrides the CSS
+       translateY(-50%) that centres each panel vertically.
+     - The first scene's poster loads eagerly with high fetch priority (it is the LCP).
    ========================================================================== */
 
 export function mountScrollWorld(container, config) {
@@ -146,7 +149,9 @@ export function mountScrollWorld(container, config) {
   // segment scenes
   SEGMENTS.forEach(s => {
     const scene = el('div', 'sw-scene'); scene.style.setProperty('--sw-accent', s.accent || '');
-    const img = el('img', 'sw-scene__still'); img.alt = ''; img.decoding = 'async'; img.loading = 'lazy';
+    const img = el('img', 'sw-scene__still'); img.alt = ''; img.decoding = 'async';
+    // The first poster is the hero (LCP): load it eagerly; the rest stay lazy.
+    if (s === SEGMENTS[0]) img.fetchPriority = 'high'; else img.loading = 'lazy';
     const poster = (isMobile() && s.stillM) ? s.stillM : s.still;
     if (poster) img.src = poster;
     scene.appendChild(img); stage.appendChild(scene);
@@ -261,7 +266,9 @@ export function mountScrollWorld(container, config) {
       else cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - 0.5) / 0.5);
       const c = copies[i];
       c.style.opacity = cop;
-      c.style.transform = reduce ? 'none' : `translateY(${(0.5 - pr) * 4}vh)`;
+      // Drift via `translate`, not `transform`: the CSS centres the copy with
+      // transform: translateY(-50%), and overwriting it pushed the panel half off-screen.
+      c.style.translate = reduce ? 'none' : `0 ${((0.5 - pr) * 4).toFixed(2)}vh`;
       c.style.pointerEvents = cop > 0.5 ? 'auto' : 'none';
     }
 

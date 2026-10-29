@@ -99,10 +99,10 @@ export const scenes: Scene[] = [
     scroll: 1.9,
     linger: 0.3,
     eyebrow: 'Seguimiento y contacto',
-    title: 'Estamos aquí para cuidar de tu sonrisa',
-    body: 'Seguimos tu evolución y resolvemos tus dudas. Escríbenos o llámanos cuando lo necesites.',
+    title: 'Seguimos a tu lado después de cada visita',
+    body: 'Revisamos tu evolución y resolvemos tus dudas cuando lo necesites, sin esperar a la siguiente cita.',
     cta: {
-      primary: { label: 'Contactar con la clínica', href: '#contacto' },
+      primary: { label: 'Pedir cita', href: '#contacto' },
       secondary: { label: 'Ver tratamientos', href: '#tratamientos' },
     },
   },

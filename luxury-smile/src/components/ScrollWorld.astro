@@ -1,10 +1,9 @@
 ---
 // Película scroll-world: la posición del scroll controla el tiempo de los clips.
 // El motor (src/scripts/scroll-world.js) construye su propio DOM dentro de #world.
+// La cabecera es SiteHeader.astro (HTML estático), así que el motor no pinta la suya.
 import { scenes } from '../data/scenes';
 ---
-
-<link rel="preload" as="image" href={`/videos/posters/${scenes[0].clip}.webp`} fetchpriority="high" />
 
 <div id="world" class="world" aria-label="Recorrido por la clínica"></div>
 
@@ -36,8 +35,7 @@ import { scenes } from '../data/scenes';
 	const world = document.getElementById('world');
 	if (world) {
 		const api = mountScrollWorld(world, {
-			brand: { name: 'Luxury Smile', href: '#top' },
-			cta: { label: 'Contactar', href: '#contacto' },
+			nav: false,
 			hint: 'Desliza para entrar',
 			firstHeading: 'h1',
 			atmosphere: false,
@@ -89,49 +87,14 @@ import { scenes } from '../data/scenes';
 		display: none;
 	}
 
-	.sw-brand__mark {
-		width: 24px;
-		height: 24px;
-		border-radius: 8px;
-		background: var(--accent);
-		box-shadow: none;
-	}
-
-	.sw-brand__name {
-		font-size: 1.125rem;
-		line-height: 1.75rem;
-		font-weight: 700;
-	}
-
-	.sw-brand,
-	.sw-topcta {
-		background: color-mix(in srgb, var(--bg) 80%, transparent);
-		backdrop-filter: blur(12px);
-		padding: 8px 12px;
-		border-radius: 9999px;
-	}
-
-	.sw-topcta {
-		background: var(--ink);
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-		font-weight: 600;
-		transition: transform 300ms var(--ease);
-	}
-
-	.sw-topcta:hover {
-		transform: translateY(-2px);
-	}
-
-	.sw-nav__item {
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-		padding: 4px 12px;
+	/* La cabecera la pone SiteHeader; la barra del motor queda vacía. */
+	.sw-topbar {
+		display: none;
 	}
 
 	/* Texto sobre el vídeo: panel liso translúcido para que siempre sea legible. */
 	.sw-copy {
-		width: min(42vw, 480px);
+		width: min(44vw, 560px);
 		padding: 32px;
 		border-radius: 24px;
 		background: color-mix(in srgb, var(--bg) 86%, transparent);
@@ -162,6 +125,7 @@ import { scenes } from '../data/scenes';
 	}
 
 	h1.sw-copy__title {
+		font-size: 3.75rem;
 		background: linear-gradient(90deg, #000000, #666666);
 		-webkit-background-clip: text;
 		background-clip: text;
@@ -197,8 +161,7 @@ import { scenes } from '../data/scenes';
 		transition: transform 300ms var(--ease), background-color 300ms var(--ease);
 	}
 
-	.sw-btn:active,
-	.sw-topcta:active {
+	.sw-btn:active {
 		transform: scale(0.98);
 	}
 
@@ -215,24 +178,9 @@ import { scenes } from '../data/scenes';
 	.sw-root.sw-done .sw-copylayer,
 	.sw-root.sw-done .sw-route,
 	.sw-root.sw-done .sw-hint,
-	.sw-root.sw-done .sw-scrollbar,
-	.sw-root.sw-done .sw-nav {
+	.sw-root.sw-done .sw-scrollbar {
 		opacity: 0 !important;
 		visibility: hidden;
-	}
-
-	.sw-nav {
-		transition: opacity 500ms var(--ease), visibility 500ms;
-	}
-
-	/* La barra superior queda como cabecera del resto de la página. */
-	.sw-topbar {
-		transition: background-color 500ms var(--ease);
-	}
-
-	.sw-root.sw-done .sw-topbar {
-		background: color-mix(in srgb, var(--bg) 92%, transparent);
-		backdrop-filter: blur(12px);
 	}
 
 	@media (max-width: 860px) {
@@ -246,7 +194,8 @@ import { scenes } from '../data/scenes';
 			padding: 24px;
 		}
 
-		.sw-copy__title {
+		.sw-copy__title,
+		h1.sw-copy__title {
 			font-size: 1.875rem;
 			line-height: 2.25rem;
 		}
