@@ -42,21 +42,22 @@ const words = text.split(' ');
 
 <style>
 	.tagline {
-		padding: 96px 16px;
+		padding: 96px 32px;
+		text-align: center;
 	}
 
 	.tagline__text {
-		max-width: 680px;
+		max-width: 880px;
 		margin: 0 auto;
-		font-size: 3rem;
-		line-height: 1.1;
-		font-weight: 700;
-		letter-spacing: -0.02em;
+		font-size: 3.75rem;
+		line-height: 1;
+		font-weight: 500;
+		letter-spacing: -0.03em;
 		text-wrap: balance;
 	}
 
 	.tagline__word {
-		color: color-mix(in srgb, var(--ink) 30%, transparent);
+		color: color-mix(in srgb, var(--ink) 25%, transparent);
 		transition: color 600ms var(--ease);
 	}
 
@@ -65,6 +66,10 @@ const words = text.split(' ');
 	}
 
 	@media (max-width: 860px) {
+		.tagline {
+			padding: 96px 16px;
+		}
+
 		.tagline__text {
 			font-size: 2.25rem;
 			line-height: 2.5rem;
