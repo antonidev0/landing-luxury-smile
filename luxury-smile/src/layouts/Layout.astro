@@ -1,0 +1,122 @@
+---
+import { clinic } from '../data/clinic';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	noindex?: boolean;
+}
+
+const {
+	title = `${clinic.name} · ${clinic.tagline}`,
+	description = 'Clínica dental y estética. Cuidamos de tu salud bucodental con atención personalizada y tecnología avanzada.',
+	image = '/videos/posters/clip-01.webp',
+	noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex" />}
+		<meta name="theme-color" content="#F7F5F1" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content={clinic.name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<slot name="head" />
+	</head>
+	<body>
+		<a class="skip-link" href="#contenido">Saltar al contenido</a>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg: #f7f5f1;
+		--surface: #ffffff;
+		--ink: #16212b;
+		--ink-soft: #5d6b78;
+		--accent: #4f7fa8;
+		--line: #e3ddd4;
+		--ease: cubic-bezier(0.22, 1, 0.36, 1);
+		--font: 'Manrope', system-ui, sans-serif;
+		color-scheme: light;
+	}
+
+	html {
+		background: var(--bg);
+		color: var(--ink);
+		font-family: var(--font);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		margin: 0;
+		background: var(--bg);
+	}
+
+	h1,
+	h2,
+	h3 {
+		text-wrap: balance;
+	}
+
+	p,
+	li {
+		text-wrap: pretty;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+		border-radius: 4px;
+	}
+
+	.skip-link {
+		position: fixed;
+		top: 8px;
+		left: 8px;
+		z-index: 1000;
+		padding: 8px 12px;
+		border-radius: 8px;
+		background: var(--ink);
+		color: #fff;
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-decoration: none;
+		transform: translateY(-200%);
+		transition: transform 300ms var(--ease);
+	}
+
+	.skip-link:focus {
+		transform: none;
+	}
+
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+</style>

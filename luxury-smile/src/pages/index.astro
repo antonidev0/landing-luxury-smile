@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollWorld from '../components/ScrollWorld.astro';
+import TaglineReveal from '../components/TaglineReveal.astro';
+import Treatments from '../components/Treatments.astro';
+import Contact from '../components/Contact.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<Layout>
+	<div id="top"></div>
+	<ScrollWorld />
+
+	<main id="contenido" class="page">
+		<TaglineReveal text="Odontología y estética en un mismo lugar, con el trato cercano que mereces." />
+		<Treatments />
+		<Contact />
+	</main>
+	<SiteFooter />
+</Layout>
+
+<script>
+	// Las secciones suben 32px y aparecen una sola vez al entrar en pantalla.
+	const items = document.querySelectorAll('.reveal');
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+		items.forEach((el) => el.classList.add('is-visible'));
+	} else {
+		const io = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						io.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.15 },
+		);
+		items.forEach((el) => io.observe(el));
+	}
+</script>
+
+<style is:global>
+	/* El contenido normal va por encima de las capas fijas de la película. */
+	.page,
+	.footer {
+		position: relative;
+		z-index: 30;
+		background: var(--bg);
+	}
+
+	.eyebrow {
+		margin: 0;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.reveal {
+		opacity: 0;
+		transform: translateY(32px);
+		transition:
+			opacity 700ms var(--ease),
+			transform 700ms var(--ease);
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			transform: none;
+			transition: opacity 300ms var(--ease);
+		}
+	}
+</style>

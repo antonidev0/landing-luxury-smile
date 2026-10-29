@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-29T02:10:47.668911Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "40c4c0d2-8e56-4de6-9293-6ef4af2f4c2d",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 10,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "10b198fc-e4bb-4a17-aa5e-e38b9f4cf418",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/10b198fc-e4bb-4a17-aa5e-e38b9f4cf418.webp"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "69fd2fd4-a8a0-4b4c-b2cb-b9a1b5669001",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/69fd2fd4-a8a0-4b4c-b2cb-b9a1b5669001.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "Start from the exact composition of the start image (microneedling). Continue the facial treatment calmly with subtle hand movements. As the treatment concludes, the woman smoothly transitions into the relaxed, awake, happy appearance of the end image. The camera gradually moves to match the end image's angle and framing. She gently opens her eyes if needed and develops the natural, confident expression of the reference. Do not introduce injections, needles or additional medical actions unless they appear in the end image. End with the exact composition of the end image. The start and end images are mandatory visual targets: do not redesign, replace or reinterpret their compositions; animate the existing scenes preserving their visual identity. Photorealistic premium clinical cinematography, natural human movement, anatomically correct hands, fingers, teeth and faces. Preserve patient identity, instruments, devices and environments. Smooth restrained camera movement, subtle focus changes, consistent lighting, realistic skin and dental textures. No cuts, black frames, fades, artificial morphing, duplicated objects, flicker, warping or abrupt camera jumps. No text, logos, watermarks, extra people or unrequested props. Do not reveal areas outside the original crop unless the target image requires it. One continuous shot: start exactly on the first frame and finish exactly on the last frame composition, prioritizing frame-to-frame continuity over dramatic movement.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_021047_40c4c0d2-8e56-4de6-9293-6ef4af2f4c2d.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_021047_40c4c0d2-8e56-4de6-9293-6ef4af2f4c2d_thumbnail.webp"
+  }
+]

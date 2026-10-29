@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-29T02:10:47.033982Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "6ca90d47-0970-4bf6-9ab5-0dca6969e90c",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 10,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "535067a7-695a-498c-b4ef-8846f4df1e6b",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/535067a7-695a-498c-b4ef-8846f4df1e6b.webp"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "b7cb252c-b14c-41fe-9ddc-6c4ed9d39ae8",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/b7cb252c-b14c-41fe-9ddc-6c4ed9d39ae8.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "Begin exactly as the start image. Preserve the woman's appearance and natural, confident expression. Gradually transition the camera and scene into the patient follow-up of the end image. The woman naturally directs her attention toward the tablet and gently touches its screen, matching the hand position and interaction of the end image. Preserve the tablet, environment, clothing, lighting and camera angle. End with the exact composition of the end image. The start and end images are mandatory visual targets: do not redesign, replace or reinterpret their compositions; animate the existing scenes preserving their visual identity. Photorealistic premium clinical cinematography, natural human movement, anatomically correct hands, fingers, teeth and faces. Preserve patient identity, instruments, devices and environments. Smooth restrained camera movement, subtle focus changes, consistent lighting, realistic skin and dental textures. No cuts, black frames, fades, artificial morphing, duplicated objects, flicker, warping or abrupt camera jumps. No text, logos, watermarks, extra people or unrequested props. Do not reveal areas outside the original crop unless the target image requires it. One continuous shot: start exactly on the first frame and finish exactly on the last frame composition, prioritizing frame-to-frame continuity over dramatic movement.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_021047_6ca90d47-0970-4bf6-9ab5-0dca6969e90c.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_021047_6ca90d47-0970-4bf6-9ab5-0dca6969e90c_thumbnail.webp"
+  }
+]

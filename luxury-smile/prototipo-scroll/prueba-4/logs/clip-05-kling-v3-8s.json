@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-29T03:26:19.557212Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "cb513382-04ff-4843-8d58-a0d73d32c9bf",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 8,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "6f9cb694-4f61-4a12-a31e-e26517da1e90",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/6f9cb694-4f61-4a12-a31e-e26517da1e90_resize.jpg"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "c58025e2-8eef-4318-aae4-df260d96782c",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/c58025e2-8eef-4318-aae4-df260d96782c.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "ONE SINGLE CONTINUOUS SHOT, NO CUTS. Begin exactly as the start image: the woman lying relaxed with eyes closed while the esthetician gently cleanses her face with a white pad. The esthetician's pink-gloved hands slowly lift the pad and withdraw out of the top of the frame. Then the camera performs one slow, smooth, uninterrupted 180-degree orbit around the top of the woman's head, travelling in a continuous arc from one side of the treatment bed to the other, always keeping her face in view and in focus. During the orbit her face is seen progressively from changing angles, the background clinic wall and furniture slide past with natural parallax, and the lighting shifts gradually to the warmer tones of the end image. As the orbit finishes, a gloved hand holding the microneedling pen enters slowly from the left edge of the frame and gently places the pen tip on her cheek, while her head and towel settle into the exact composition of the end image. The woman stays still, relaxed, eyes closed, same identity throughout. RULES: the camera move must be visibly continuous from the first frame to the last; never cut, jump, crossfade, dissolve, fade or switch to the second image; no morphing, warping or flicker; nothing appears out of nowhere; no extra people, props, text or logos; anatomically correct hands and face; 16:9 photorealistic premium clinical cinematography. End exactly on the end image composition.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_032619_cb513382-04ff-4843-8d58-a0d73d32c9bf.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_032619_cb513382-04ff-4843-8d58-a0d73d32c9bf_thumbnail.webp"
+  }
+]

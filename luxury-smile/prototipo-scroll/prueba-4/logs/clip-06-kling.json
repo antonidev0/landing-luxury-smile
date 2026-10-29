@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-29T02:31:51.414273Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "b4c992e1-9b86-48fc-90a3-cd6b8c90c138",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 8,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "77236bfc-a143-42d5-ba02-02338cdd911b",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/77236bfc-a143-42d5-ba02-02338cdd911b.webp"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "a86297fa-d8f1-42d9-b8e8-ca1a7f290713",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/a86297fa-d8f1-42d9-b8e8-ca1a7f290713.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "Start from the exact composition of the start image (microneedling). Continue the treatment calmly with subtle hand movements. As it concludes, the hands and device slowly leave the frame and the woman gradually becomes relaxed, awake and happy as in the end image. The camera slowly moves to match the end image's angle and framing. She gently opens her eyes if needed and develops the natural, confident expression of the reference. No injections, needles or extra medical actions unless they appear in the end image. End with the exact composition of the end image. RULES: The start and end images are strict visual targets; do not redesign or reinterpret them, animate the existing scenes preserving identity, anatomy, clothing, instruments, devices and environment. 16:9 widescreen, photorealistic premium clinical cinematography. SLOW, gradual, continuous camera movement; let each action finish before the next begins; no fast zooms, rapid rotations, cuts, fades, black frames, flicker or warping. Nobody and nothing appears out of nowhere: every hand, doctor, instrument or device enters and leaves the frame through a visible, physically plausible movement from outside the crop; no objects popping in, teleporting or morphing; no extra people or unrequested props; no text or logos. Anatomically correct hands, fingers, teeth and faces. Consistent lighting, realistic skin and dental textures. Do not reveal areas outside the original crop unless the end image requires it. Start exactly on the first frame and end exactly on the end image composition; prioritize frame-to-frame continuity and reference accuracy over dramatic movement.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_023151_b4c992e1-9b86-48fc-90a3-cd6b8c90c138.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_023151_b4c992e1-9b86-48fc-90a3-cd6b8c90c138_thumbnail.webp"
+  }
+]

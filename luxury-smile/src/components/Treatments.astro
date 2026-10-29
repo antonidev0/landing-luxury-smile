@@ -1,0 +1,121 @@
+---
+import { treatments } from '../data/clinic';
+
+const groups = [...new Set(treatments.map((t) => t.group))];
+---
+
+<section id="tratamientos" class="treatments reveal" aria-labelledby="tratamientos-title">
+	<header class="treatments__head">
+		<p class="eyebrow">Tratamientos</p>
+		<h2 id="tratamientos-title">Lo que podemos hacer por ti</h2>
+	</header>
+
+	{
+		groups.map((group) => (
+			<div class="treatments__group">
+				<h3 class="treatments__group-title">{group}</h3>
+				<ul class="treatments__list">
+					{treatments
+						.filter((t) => t.group === group)
+						.map((t) => (
+							<li id={`tratamiento-${t.id}`} class="treatment">
+								<h4 class="treatment__name">{t.name}</h4>
+								<p class="treatment__desc">{t.description}</p>
+								<a class="treatment__link" href={t.href}>
+									Pedir información
+									<span class="visually-hidden"> sobre {t.name}</span>
+								</a>
+							</li>
+						))}
+				</ul>
+			</div>
+		))
+	}
+</section>
+
+<style>
+	.treatments {
+		max-width: 1080px;
+		margin: 0 auto;
+		padding: 96px 16px;
+	}
+
+	.treatments__head h2 {
+		margin: 12px 0 0;
+		font-size: 3rem;
+		line-height: 1;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.treatments__group {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		gap: 32px;
+		margin-top: 64px;
+	}
+
+	.treatments__group-title {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 600;
+		color: var(--ink-soft);
+	}
+
+	.treatments__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 40px 32px;
+	}
+
+	.treatment__name {
+		margin: 0;
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+		font-weight: 700;
+	}
+
+	.treatment__desc {
+		margin: 8px 0 0;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		color: var(--ink-soft);
+	}
+
+	.treatment__link {
+		display: inline-block;
+		margin-top: 12px;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 600;
+		color: var(--accent);
+		text-decoration: none;
+		transition: transform 300ms var(--ease);
+	}
+
+	.treatment__link:hover {
+		transform: translateX(4px);
+	}
+
+	@media (max-width: 860px) {
+		.treatments__head h2 {
+			font-size: 2.25rem;
+			line-height: 2.5rem;
+		}
+
+		.treatments__group {
+			grid-template-columns: 1fr;
+			gap: 16px;
+			margin-top: 48px;
+		}
+
+		.treatments__list {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+	}
+</style>

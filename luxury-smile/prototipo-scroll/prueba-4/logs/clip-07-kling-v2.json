@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-29T03:34:55.35477Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "a66d0c2c-5c0e-4e9d-aade-423272a0793b",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 8,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "abeb4359-ed53-4bc0-a29d-fdb57cc37123",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/abeb4359-ed53-4bc0-a29d-fdb57cc37123.png"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "73a4e36f-2541-46b5-96af-0cd75eca8a00",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/73a4e36f-2541-46b5-96af-0cd75eca8a00.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "Begin exactly as the start image: the smiling woman in the treatment chair. The camera slowly and continuously pulls back and pans to the right, moving away from her, so she becomes smaller and progressively out of focus in the background of the clinic. While the camera keeps moving, a nurse in blue scrubs standing in the foreground on the right gradually enters the frame from the right edge, holding a tablet; the camera glides over her shoulder. Focus slowly racks from the background to the tablet in the foreground as her finger gently touches the screen. The clinic remains blurred behind. Settle into the exact composition of the end image: over-the-shoulder view of the hands using the tablet, blue scrubs on the right, blurred clinic background. RULES: ONE SINGLE CONTINUOUS SHOT. The camera move must be visibly continuous from the first frame to the last; never cut, jump, crossfade, dissolve, fade or switch to the second image; no morphing, warping or flicker. Nothing appears out of nowhere: every hand, person or object enters the frame through a visible, natural movement from outside the crop. No extra props, text or logos. Anatomically correct hands and faces, consistent identity. 16:9 photorealistic premium clinical cinematography, slow and smooth. End exactly on the end image composition.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_033455_a66d0c2c-5c0e-4e9d-aade-423272a0793b.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_033455_a66d0c2c-5c0e-4e9d-aade-423272a0793b_thumbnail.webp"
+  }
+]

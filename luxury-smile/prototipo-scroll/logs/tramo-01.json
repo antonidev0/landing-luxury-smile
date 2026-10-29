@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-28T14:03:59.863549Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "7ea07e3d-e1b3-45bf-ae3d-5f8d0c865cdc",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 5,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "55d8f9b8-9e60-407a-89f6-701304810fdf",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/55d8f9b8-9e60-407a-89f6-701304810fdf.webp"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "969a913c-00e7-4ff5-90e3-1f319ef97396",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/969a913c-00e7-4ff5-90e3-1f319ef97396.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "Smooth continuous first-person camera glide forward, like a person slowly walking through a luxury aesthetic and dental clinic. The camera moves gently into the first scene and seamlessly flows into the next scene, one continuous shot with no cuts. Soft warm natural light, calm elegant atmosphere, steady stabilized movement, subtle parallax, photorealistic, high detail.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261028_140359_7ea07e3d-e1b3-45bf-ae3d-5f8d0c865cdc.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261028_140359_7ea07e3d-e1b3-45bf-ae3d-5f8d0c865cdc_thumbnail.webp"
+  }
+]

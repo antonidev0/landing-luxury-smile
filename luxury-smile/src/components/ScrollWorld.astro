@@ -1,0 +1,281 @@
+---
+// Película scroll-world: la posición del scroll controla el tiempo de los clips.
+// El motor (src/scripts/scroll-world.js) construye su propio DOM dentro de #world.
+import { scenes } from '../data/scenes';
+---
+
+<link rel="preload" as="image" href={`/videos/posters/${scenes[0].clip}.webp`} fetchpriority="high" />
+
+<div id="world" class="world" aria-label="Recorrido por la clínica"></div>
+
+<noscript>
+	<div class="world-static">
+		{
+			scenes.map((s, i) => (
+				<section class="world-static__scene">
+					<img src={`/videos/posters/${s.clip}.webp`} alt="" width="1920" height="1080" loading="lazy" />
+					<div>
+						<p class="world-static__eyebrow">{s.eyebrow}</p>
+						{i === 0 ? <h1>{s.title}</h1> : <h2>{s.title}</h2>}
+						<p>{s.body}</p>
+					</div>
+				</section>
+			))
+		}
+	</div>
+</noscript>
+
+<script>
+	import { mountScrollWorld } from '../scripts/scroll-world.js';
+	import { scenes } from '../data/scenes';
+
+	// Conexiones lentas o con ahorro de datos: solo imágenes fijas, sin descargar vídeo.
+	const conn = (navigator as any).connection;
+	const lite = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')));
+
+	const world = document.getElementById('world');
+	if (world) {
+		const api = mountScrollWorld(world, {
+			brand: { name: 'Luxury Smile', href: '#top' },
+			cta: { label: 'Contactar', href: '#contacto' },
+			hint: 'Desliza para entrar',
+			firstHeading: 'h1',
+			atmosphere: false,
+			crossfade: 0.1,
+			lite,
+			sections: scenes.map((s) => ({
+				id: s.id,
+				label: s.label,
+				still: `/videos/posters/${s.clip}.webp`,
+				clip: `/videos/${s.clip}.webm`,
+				clipMobile: `/videos/${s.clip}-m.webm`,
+				accent: s.accent,
+				scroll: s.scroll,
+				linger: s.linger,
+				eyebrow: s.eyebrow,
+				title: s.title,
+				body: s.body,
+				tags: s.tags,
+				cta: s.cta,
+			})),
+			connectors: [],
+		});
+
+		// Los enlaces "#escena-<id>" llevan a la escena dentro del recorrido.
+		document.addEventListener('click', (e) => {
+			const link = (e.target as HTMLElement).closest('a[href^="#escena-"]');
+			if (!link || !api) return;
+			const index = scenes.findIndex((s) => `#escena-${s.id}` === link.getAttribute('href'));
+			if (index < 0) return;
+			e.preventDefault();
+			api.jumpTo(index);
+		});
+	}
+</script>
+
+<style is:global>
+	/* Tema del motor scroll-world (sus estilos base viven en @layer sw, estos ganan). */
+	.sw-root {
+		--sw-bg: var(--bg);
+		--sw-ink: var(--ink);
+		--sw-ink-soft: var(--ink-soft);
+		--sw-accent: var(--accent);
+		--sw-font-display: var(--font);
+		--sw-font-body: var(--font);
+	}
+
+	.sw-particles,
+	.sw-copylayer::before {
+		display: none;
+	}
+
+	.sw-brand__mark {
+		width: 24px;
+		height: 24px;
+		border-radius: 8px;
+		background: var(--accent);
+		box-shadow: none;
+	}
+
+	.sw-brand__name {
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+		font-weight: 700;
+	}
+
+	.sw-brand,
+	.sw-topcta {
+		background: color-mix(in srgb, var(--bg) 80%, transparent);
+		backdrop-filter: blur(12px);
+		padding: 8px 12px;
+		border-radius: 9999px;
+	}
+
+	.sw-topcta {
+		background: var(--ink);
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 600;
+		transition: transform 300ms var(--ease);
+	}
+
+	.sw-topcta:hover {
+		transform: translateY(-2px);
+	}
+
+	.sw-nav__item {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		padding: 4px 12px;
+	}
+
+	/* Texto sobre el vídeo: panel liso translúcido para que siempre sea legible. */
+	.sw-copy {
+		width: min(42vw, 480px);
+		padding: 32px;
+		border-radius: 24px;
+		background: color-mix(in srgb, var(--bg) 86%, transparent);
+		backdrop-filter: blur(16px);
+		box-sizing: border-box;
+	}
+
+	.sw-copy__num {
+		font-size: 0.75rem;
+		line-height: 1rem;
+	}
+
+	.sw-copy__eyebrow {
+		margin-top: 16px;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
+
+	.sw-copy__title {
+		margin-top: 12px;
+		font-size: 3rem;
+		line-height: 1;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		text-shadow: none;
+	}
+
+	h1.sw-copy__title {
+		background: linear-gradient(90deg, #000000, #666666);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.sw-copy__body {
+		margin: 16px 0 0;
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+		text-shadow: none;
+	}
+
+	.sw-copy__tags {
+		margin-top: 24px;
+	}
+
+	.sw-copy__tags li {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		padding: 4px 12px;
+	}
+
+	.sw-copy__cta {
+		margin-top: 24px;
+	}
+
+	.sw-btn {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		font-weight: 600;
+		padding: 8px 12px;
+		transition: transform 300ms var(--ease), background-color 300ms var(--ease);
+	}
+
+	.sw-btn:active,
+	.sw-topcta:active {
+		transform: scale(0.98);
+	}
+
+	/* Al terminar la película, las capas fijas se apartan y queda el contenido normal. */
+	.sw-stage,
+	.sw-copylayer,
+	.sw-route,
+	.sw-hint,
+	.sw-scrollbar {
+		transition: opacity 500ms var(--ease), visibility 500ms;
+	}
+
+	.sw-root.sw-done .sw-stage,
+	.sw-root.sw-done .sw-copylayer,
+	.sw-root.sw-done .sw-route,
+	.sw-root.sw-done .sw-hint,
+	.sw-root.sw-done .sw-scrollbar,
+	.sw-root.sw-done .sw-nav {
+		opacity: 0 !important;
+		visibility: hidden;
+	}
+
+	.sw-nav {
+		transition: opacity 500ms var(--ease), visibility 500ms;
+	}
+
+	/* La barra superior queda como cabecera del resto de la página. */
+	.sw-topbar {
+		transition: background-color 500ms var(--ease);
+	}
+
+	.sw-root.sw-done .sw-topbar {
+		background: color-mix(in srgb, var(--bg) 92%, transparent);
+		backdrop-filter: blur(12px);
+	}
+
+	@media (max-width: 860px) {
+		/* En móvil la barra de progreso superior basta; los puntos tapaban el texto. */
+		.sw-route {
+			display: none;
+		}
+
+		.sw-copy {
+			width: auto;
+			padding: 24px;
+		}
+
+		.sw-copy__title {
+			font-size: 1.875rem;
+			line-height: 2.25rem;
+		}
+
+		.sw-copy__body {
+			font-size: 1rem;
+			line-height: 1.5rem;
+		}
+	}
+
+	.world-static__scene {
+		display: grid;
+		gap: 24px;
+		padding: 48px 16px;
+		max-width: 1080px;
+		margin: 0 auto;
+	}
+
+	.world-static__scene img {
+		width: 100%;
+		height: auto;
+		border-radius: 24px;
+	}
+
+	.world-static__eyebrow {
+		color: var(--accent);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+</style>

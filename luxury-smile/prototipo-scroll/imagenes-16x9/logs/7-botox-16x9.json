@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-10-29T02:42:18.325492Z",
+    "display_name": "FLUX.2 Pro Outpaint",
+    "id": "3469668a-ed1d-406e-b56f-413fee2c03b5",
+    "job_type": "flux_2_pro_outpaint",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_024218_3469668a-ed1d-406e-b56f-413fee2c03b5_min.webp",
+    "params": {
+      "expand_bottom": 0,
+      "expand_left": 411,
+      "expand_right": 412,
+      "expand_top": 0,
+      "folder_id": null,
+      "medias": [
+        {
+          "data": {
+            "id": "0ec376ca-a2ec-4b0f-9fdf-58afee8c13d9",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/0ec376ca-a2ec-4b0f-9fdf-58afee8c13d9.webp"
+          },
+          "role": "image"
+        }
+      ]
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_024218_3469668a-ed1d-406e-b56f-413fee2c03b5.png",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from './SiteFooter.astro';
+import { clinic } from '../data/clinic';
+
+interface Props {
+	title: string;
+	noindex?: boolean;
+}
+
+const { title, noindex = false } = Astro.props;
+---
+
+<Layout title={`${title} · ${clinic.name}`} noindex={noindex}>
+	<main id="contenido" class="simple">
+		<a class="simple__back" href="/">← Volver a {clinic.name}</a>
+		<h1>{title}</h1>
+		<slot />
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.simple {
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 96px 16px 64px;
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+	}
+
+	.simple h1 {
+		margin: 24px 0 0;
+		font-size: 3rem;
+		line-height: 1;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.simple__back {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 600;
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.simple :global(.pending) {
+		color: #9a5b2e;
+		background: #fbf1e6;
+		border: 1px dashed #d9a877;
+		border-radius: 8px;
+		padding: 8px 12px;
+	}
+</style>

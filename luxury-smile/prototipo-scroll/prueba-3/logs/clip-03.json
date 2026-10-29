@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2026-10-29T02:05:08.5658Z",
+    "display_name": "Kling O3 (Frames)",
+    "id": "d511651d-ba15-4a88-8024-da74354dda8b",
+    "job_type": "kling_o3_flf",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 10,
+      "height": 1080,
+      "medias": [
+        {
+          "data": {
+            "id": "615cdd89-5cd0-49cc-a233-3492ad25c3bd",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/615cdd89-5cd0-49cc-a233-3492ad25c3bd.webp"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "63303343-61e7-4188-892a-f23fc455ab4b",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/63303343-61e7-4188-892a-f23fc455ab4b.webp"
+          },
+          "role": "end_image"
+        }
+      ],
+      "mode": "pro",
+      "multi_prompt": [],
+      "multi_shots": false,
+      "prompt": "Start exactly from the start image (tooth extraction). The forceps holding the tooth move slowly away from the treatment area. The camera guides toward the extraction site and transitions continuously into the dental implant procedure of the end image. The change must look like a plausible, continuous clinical procedure, not a magical transformation. Preserve realistic dental anatomy and introduce only objects supported by the reference. End at the exact composition of the end image. The start and end images are mandatory visual targets: do not redesign, replace or reinterpret their compositions; animate the existing scenes preserving their visual identity. Photorealistic premium clinical cinematography, natural human movement, anatomically correct hands, fingers, teeth and faces. Preserve patient identity, instruments, devices and environments. Smooth restrained camera movement, subtle focus changes, consistent lighting, realistic skin and dental textures. No cuts, black frames, fades, artificial morphing, duplicated objects, flicker, warping or abrupt camera jumps. No text, logos, watermarks, extra people or unrequested props. Do not reveal areas outside the original crop unless the target image requires it. One continuous shot: start exactly on the first frame and finish exactly on the last frame composition, prioritizing frame-to-frame continuity over dramatic movement.",
+      "sound": "off",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_020508_d511651d-ba15-4a88-8024-da74354dda8b.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3JdiHxTNFlHzsye3svueFkQdzq0/hf_20261029_020508_d511651d-ba15-4a88-8024-da74354dda8b_thumbnail.webp"
+  }
+]

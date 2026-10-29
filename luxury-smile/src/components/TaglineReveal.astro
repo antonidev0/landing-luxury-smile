@@ -1,0 +1,73 @@
+---
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+const words = text.split(' ');
+---
+
+<section class="tagline" aria-label={text}>
+	<p class="tagline__text" aria-hidden="true">
+		{words.map((w) => <span class="tagline__word">{w} </span>)}
+	</p>
+</section>
+
+<script>
+	// Cada palabra pasa de tono apagado a color pleno al cruzar la línea de activación.
+	const words = Array.from(document.querySelectorAll<HTMLElement>('.tagline__word'));
+	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (reduce) {
+		words.forEach((w) => w.classList.add('is-on'));
+	} else if (words.length) {
+		let ticking = false;
+		const update = () => {
+			const trigger = window.innerHeight * 0.72;
+			words.forEach((w) => w.classList.toggle('is-on', w.getBoundingClientRect().top < trigger));
+			ticking = false;
+		};
+		window.addEventListener(
+			'scroll',
+			() => {
+				if (!ticking) {
+					ticking = true;
+					requestAnimationFrame(update);
+				}
+			},
+			{ passive: true },
+		);
+		update();
+	}
+</script>
+
+<style>
+	.tagline {
+		padding: 96px 16px;
+	}
+
+	.tagline__text {
+		max-width: 680px;
+		margin: 0 auto;
+		font-size: 3rem;
+		line-height: 1.1;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
+	}
+
+	.tagline__word {
+		color: color-mix(in srgb, var(--ink) 30%, transparent);
+		transition: color 600ms var(--ease);
+	}
+
+	.tagline__word:global(.is-on) {
+		color: var(--ink);
+	}
+
+	@media (max-width: 860px) {
+		.tagline__text {
+			font-size: 2.25rem;
+			line-height: 2.5rem;
+		}
+	}
+</style>
