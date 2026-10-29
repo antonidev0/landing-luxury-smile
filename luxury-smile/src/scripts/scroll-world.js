@@ -71,6 +71,8 @@
      - Returns { jumpTo(index) } so page links can target a scene.
      - The copy drift uses the `translate` property so it no longer overrides the CSS
        translateY(-50%) that centres each panel vertically.
+     - sections[].clipFallback: optional H.264 MP4 used when the browser can't play VP9 WebM.
+     - config.doneAt: viewport-heights past the last clip at which `sw-done` is added (default 0.6).
      - The first scene's poster loads eagerly with high fetch priority (it is the LCP).
    ========================================================================== */
 
@@ -90,6 +92,8 @@ export function mountScrollWorld(container, config) {
   const CROSSFADE = (config.crossfade != null) ? config.crossfade : 0.12;  // seam dissolve width (vh)
   const N = SECTIONS.length;
   if (!N) return;
+  const canWebM = !!document.createElement('video').canPlayType('video/webm; codecs="vp9"');
+  const DONE_AT = (config.doneAt != null) ? config.doneAt : 0.6;   // vh past the last clip
 
   injectCSS();
   container.classList.add('sw-root');
@@ -97,7 +101,8 @@ export function mountScrollWorld(container, config) {
   // ---- build the interleaved segment chain: dive0, conn0, dive1, … diveN-1 ----
   const SEGMENTS = [];
   SECTIONS.forEach((s, i) => {
-    const dive = { kind: 'dive', si: i, clip: s.clip, clipM: s.clipMobile, still: s.still, stillM: s.stillMobile,
+    const dive = { kind: 'dive', si: i, clip: s.clip, clipM: s.clipMobile, clipF: s.clipFallback,
+                   still: s.still, stillM: s.stillMobile,
                    accent: s.accent, w: s.scroll || DIVE_W, linger: s.linger || 0 };
     SEGMENTS.push(dive);
     s._seg = dive;
@@ -216,7 +221,9 @@ export function mountScrollWorld(container, config) {
     if (reduce || s.loading || !s.clip) return;
     s.loading = true;
     // Serve the lighter mobile encode on phones when one was provided.
-    const url = (isMobile() && s.clipM) ? s.clipM : s.clip;
+    let url = (isMobile() && s.clipM) ? s.clipM : s.clip;
+    // Browsers without VP9 WebM (older Safari) get the H.264 MP4 fallback when provided.
+    if (s.clipF && !canWebM) url = s.clipF;
     fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error('404')))
       .then(blob => {
         const v = document.createElement('video');
@@ -281,7 +288,7 @@ export function mountScrollWorld(container, config) {
       nav.querySelectorAll('.sw-nav__item').forEach((n, k) => n.classList.toggle('is-active', k === near));
       container.style.setProperty('--sw-accent', SECTIONS[near].accent || '');
     }
-    container.classList.toggle('sw-done', y > (totalW + 0.6) * vh);
+    container.classList.toggle('sw-done', y > (totalW + DONE_AT) * vh);
     scrollbarFill.style.transform = `scaleX(${clamp(y / (totalW * vh))})`;
     hint.style.opacity = clamp(1 - y / (0.5 * vh));
     if (particles) particles.style.transform = `translate3d(0, ${-y * 0.05}px, 0)`;

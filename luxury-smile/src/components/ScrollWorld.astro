@@ -5,7 +5,10 @@
 import { scenes } from '../data/scenes';
 ---
 
-<div id="world" class="world" aria-label="Recorrido por la clínica"></div>
+<div id="world" class="world" aria-label="Recorrido por la clínica">
+	<!-- Al terminar el recorrido, el último fotograma queda de fondo, oscurecido y difuminado. -->
+	<div class="world-scrim" aria-hidden="true"></div>
+</div>
 
 <noscript>
 	<div class="world-static">
@@ -40,6 +43,7 @@ import { scenes } from '../data/scenes';
 			firstHeading: 'h1',
 			atmosphere: false,
 			crossfade: 0.1,
+			doneAt: 0,
 			lite,
 			sections: scenes.map((s) => ({
 				id: s.id,
@@ -47,6 +51,7 @@ import { scenes } from '../data/scenes';
 				still: `/videos/posters/${s.clip}.webp`,
 				clip: `/videos/${s.clip}.webm`,
 				clipMobile: `/videos/${s.clip}-m.webm`,
+				clipFallback: `/videos/${s.clip}.mp4`,
 				accent: s.accent,
 				scroll: s.scroll,
 				linger: s.linger,
@@ -92,19 +97,22 @@ import { scenes } from '../data/scenes';
 		display: none;
 	}
 
-	/* Texto sobre el vídeo: panel liso translúcido para que siempre sea legible. */
+	/* Texto sobre el vídeo: panel de cristal oscuro, siempre legible. */
 	.sw-copy {
 		width: min(44vw, 560px);
-		padding: 32px;
-		border-radius: 24px;
-		background: color-mix(in srgb, var(--bg) 86%, transparent);
-		backdrop-filter: blur(16px);
+		padding: 40px;
+		border-radius: 32px;
+		background: var(--glass);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid var(--line);
 		box-sizing: border-box;
 	}
 
 	.sw-copy__num {
 		font-size: 0.75rem;
 		line-height: 1rem;
+		color: var(--ink-soft);
 	}
 
 	.sw-copy__eyebrow {
@@ -126,7 +134,7 @@ import { scenes } from '../data/scenes';
 
 	h1.sw-copy__title {
 		font-size: 3.75rem;
-		background: linear-gradient(90deg, #000000, #666666);
+		background: linear-gradient(90deg, #ffffff, #9b9b9b);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
@@ -136,6 +144,7 @@ import { scenes } from '../data/scenes';
 		margin: 16px 0 0;
 		font-size: 1.125rem;
 		line-height: 1.75rem;
+		color: var(--ink-soft);
 		text-shadow: none;
 	}
 
@@ -147,26 +156,72 @@ import { scenes } from '../data/scenes';
 		font-size: 0.875rem;
 		line-height: 1.25rem;
 		padding: 4px 12px;
+		color: var(--ink);
+		background: color-mix(in srgb, var(--sw-accent) 14%, transparent);
+		border: 1px solid color-mix(in srgb, var(--sw-accent) 35%, transparent);
 	}
 
 	.sw-copy__cta {
-		margin-top: 24px;
+		margin-top: 32px;
 	}
 
 	.sw-btn {
 		font-size: 1rem;
 		line-height: 1.5rem;
 		font-weight: 600;
-		padding: 8px 12px;
+		padding: 8px 16px;
 		transition: transform 300ms var(--ease), background-color 300ms var(--ease);
+	}
+
+	.sw-btn--primary {
+		color: var(--accent-ink);
+		background: var(--accent);
+	}
+
+	.sw-btn--ghost {
+		color: var(--ink);
+		border-color: var(--line);
 	}
 
 	.sw-btn:active {
 		transform: scale(0.98);
 	}
 
-	/* Al terminar la película, las capas fijas se apartan y queda el contenido normal. */
-	.sw-stage,
+	.sw-route__label {
+		color: var(--ink);
+		background: var(--glass);
+		border-color: var(--line);
+	}
+
+	.sw-route__dot i {
+		background: color-mix(in srgb, var(--ink) 35%, transparent);
+	}
+
+	.sw-hint {
+		color: var(--ink);
+	}
+
+	.sw-hint i {
+		border-color: color-mix(in srgb, var(--ink) 50%, transparent);
+	}
+
+	/* Al terminar el recorrido el vídeo se queda quieto de fondo y el resto se aparta. */
+	.world-scrim {
+		position: fixed;
+		inset: 0;
+		z-index: 15;
+		pointer-events: none;
+		opacity: 0;
+		background: color-mix(in srgb, var(--bg) 72%, transparent);
+		backdrop-filter: blur(32px) saturate(1.2);
+		-webkit-backdrop-filter: blur(32px) saturate(1.2);
+		transition: opacity 700ms var(--ease);
+	}
+
+	.sw-root.sw-done .world-scrim {
+		opacity: 1;
+	}
+
 	.sw-copylayer,
 	.sw-route,
 	.sw-hint,
@@ -174,7 +229,6 @@ import { scenes } from '../data/scenes';
 		transition: opacity 500ms var(--ease), visibility 500ms;
 	}
 
-	.sw-root.sw-done .sw-stage,
 	.sw-root.sw-done .sw-copylayer,
 	.sw-root.sw-done .sw-route,
 	.sw-root.sw-done .sw-hint,
@@ -192,6 +246,7 @@ import { scenes } from '../data/scenes';
 		.sw-copy {
 			width: auto;
 			padding: 24px;
+			border-radius: 24px;
 		}
 
 		.sw-copy__title,

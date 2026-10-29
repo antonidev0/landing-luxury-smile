@@ -69,11 +69,11 @@ const links = [
 		gap: 24px;
 		padding: 8px 8px 8px 24px;
 		border-radius: 9999px;
-		background: color-mix(in srgb, var(--surface) 72%, transparent);
+		background: var(--glass);
 		backdrop-filter: blur(16px);
 		-webkit-backdrop-filter: blur(16px);
 		border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-		box-shadow: 0 8px 32px color-mix(in srgb, var(--ink) 8%, transparent);
+		box-shadow: 0 8px 32px color-mix(in srgb, #000000 24%, transparent);
 		pointer-events: auto;
 	}
 
@@ -112,14 +112,14 @@ const links = [
 
 	.header__link[aria-current='true'] {
 		color: var(--ink);
-		background: color-mix(in srgb, var(--ink) 6%, transparent);
+		background: color-mix(in srgb, var(--ink) 10%, transparent);
 	}
 
 	.header__cta {
 		padding: 8px 16px;
 		border-radius: 9999px;
-		background: var(--ink);
-		color: #fff;
+		background: var(--accent);
+		color: var(--accent-ink);
 		font-size: 0.875rem;
 		line-height: 1.25rem;
 		font-weight: 600;

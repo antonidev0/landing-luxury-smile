@@ -34,20 +34,22 @@ Los valores que empiezan por `[Pendiente` se muestran marcados en la web hasta q
 
 ## Vídeos
 
-Solo WebM (VP9), en `public/videos/`:
+Los originales en máxima calidad están en `higgs/clip-N.mp4` (no se publican). A partir de ellos se generan, en `public/videos/`:
 
-- `clip-0N.webm`: escritorio, 1920×1080, keyframe cada 10 frames para que el scrub sea fluido.
-- `clip-0N-m.webm`: móvil, 1280×720, keyframe cada 4 frames.
+- `clip-0N.webm`: escritorio, VP9 1920×1080 a 24 fps (los fps originales), crf 26, keyframe cada 8 frames para que el scrub sea fluido.
+- `clip-0N-m.webm`: móvil, VP9 1280×720, crf 32, keyframe cada 4 frames.
+- `clip-0N.mp4`: H.264 1080p para navegadores sin VP9 (Safari antiguo).
 - `posters/clip-0N.webp`: primer fotograma de cada clip; se ve mientras carga el vídeo, con `prefers-reduced-motion` y en conexiones lentas (Save-Data / 2G), donde no se descarga vídeo.
 
-Codificación (con ffmpeg), recortando al centro para llenar 16:9 sin bandas:
+Los originales no son 16:9 exactos; se recortan al centro para llenar 16:9 sin bandas:
 
 ```sh
-ffmpeg -i src.mp4 -an -vf "scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps=30,format=yuv420p" \
-  -c:v libvpx-vp9 -crf 34 -b:v 0 -g 10 -keyint_min 10 -row-mt 1 clip-0N.webm
-ffmpeg -i src.mp4 -an -vf "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,fps=30,format=yuv420p" \
-  -c:v libvpx-vp9 -crf 36 -b:v 0 -g 4 -keyint_min 4 -row-mt 1 clip-0N-m.webm
-ffmpeg -i clip-0N.webm -frames:v 1 -c:v libwebp -quality 82 posters/clip-0N.webp
+VF="scale=1920:1080:force_original_aspect_ratio=increase:flags=lanczos,crop=1920:1080,format=yuv420p"
+VFM="scale=1280:720:force_original_aspect_ratio=increase:flags=lanczos,crop=1280:720,format=yuv420p"
+ffmpeg -i higgs/clip-N.mp4 -an -vf "$VF" -c:v libvpx-vp9 -crf 26 -b:v 0 -g 8 -keyint_min 8 -row-mt 1 -deadline good -cpu-used 2 public/videos/clip-0N.webm
+ffmpeg -i higgs/clip-N.mp4 -an -vf "$VFM" -c:v libvpx-vp9 -crf 32 -b:v 0 -g 4 -keyint_min 4 -row-mt 1 -deadline good -cpu-used 2 public/videos/clip-0N-m.webm
+ffmpeg -i higgs/clip-N.mp4 -an -vf "$VF" -c:v libx264 -preset slow -crf 23 -profile:v high -g 8 -keyint_min 8 -sc_threshold 0 -movflags +faststart public/videos/clip-0N.mp4
+ffmpeg -i public/videos/clip-0N.webm -frames:v 1 -c:v libwebp -quality 85 public/videos/posters/clip-0N.webp
 ```
 
-Cada clip debe terminar en el encuadre con el que empieza el siguiente; el motor hace un fundido corto entre clips.
+Cada clip debe terminar en el encuadre con el que empieza el siguiente; el motor hace un fundido corto entre clips. Al acabar el recorrido, su último fotograma se queda fijo de fondo, oscurecido y difuminado, detrás del resto de secciones.
