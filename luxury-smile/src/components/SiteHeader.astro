@@ -213,6 +213,12 @@ const links = [
 		opacity: 1;
 	}
 
+	/* `display: flex` anula el atributo hidden: sin esto el menú, invisible, tapaba toda
+	   la página (bloqueaba clics y dejaba una capa con desenfoque encima del vídeo). */
+	.menu[hidden] {
+		display: none;
+	}
+
 	.menu__nav {
 		display: flex;
 		flex-direction: column;
