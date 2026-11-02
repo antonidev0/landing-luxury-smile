@@ -8,7 +8,7 @@ import { treatments } from '../data/clinic';
 		<p class="eyebrow">Tratamientos</p>
 		<h2 id="tratamientos-title" class="text-gradient">Lo que podemos hacer por ti</h2>
 		<p class="treatments__lead">
-			Odontología y medicina estética en una misma clínica, con un plan explicado paso a paso.
+			Odontología general y especializada en una misma clínica, con un plan explicado paso a paso.
 		</p>
 	</header>
 
@@ -33,10 +33,6 @@ import { treatments } from '../data/clinic';
 						</p>
 						<h3 class="treatment__name">{t.name}</h3>
 						<p class="treatment__desc">{t.description}</p>
-						<a class="treatment__link link-arrow" href={t.href}>
-							Pedir información
-							<span class="visually-hidden"> sobre {t.name}</span>
-						</a>
 					</article>
 				</li>
 			))
@@ -141,13 +137,6 @@ import { treatments } from '../data/clinic';
 		color: var(--ink-soft);
 	}
 
-	.treatment__link {
-		margin-top: auto;
-		padding-top: 16px;
-		align-self: flex-start;
-		color: var(--accent);
-	}
-
 	@media (max-width: 1100px) {
 		.treatments__grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -183,9 +172,8 @@ import { treatments } from '../data/clinic';
 			grid-template-areas:
 				'media meta'
 				'media name'
-				'media desc'
-				'media link';
-			grid-template-rows: auto auto 1fr auto;
+				'media desc';
+			grid-template-rows: auto auto 1fr;
 			column-gap: 16px;
 			padding: 24px 0;
 			border-bottom: 1px solid var(--line);
@@ -213,11 +201,6 @@ import { treatments } from '../data/clinic';
 
 		.treatment__desc {
 			grid-area: desc;
-		}
-
-		.treatment__link {
-			grid-area: link;
-			padding-top: 12px;
 		}
 	}
 </style>

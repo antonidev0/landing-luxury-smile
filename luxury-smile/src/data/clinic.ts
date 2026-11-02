@@ -3,9 +3,6 @@ import limpiezaBucal from '../assets/treatments/limpieza-bucal.webp';
 import ortodoncia from '../assets/treatments/ortodoncia.webp';
 import exodoncia from '../assets/treatments/exodoncia.webp';
 import implantes from '../assets/treatments/implantes.webp';
-import limpiezaFacial from '../assets/treatments/limpieza-facial.png';
-import microneedling from '../assets/treatments/microneedling.webp';
-import botox from '../assets/treatments/botox.png';
 import seguimiento from '../assets/treatments/seguimiento.webp';
 
 // Datos reales de la clínica. Todo lo que empieza por "[Pendiente" se muestra tal cual
@@ -16,7 +13,7 @@ export const isPending = (value: string) => value.startsWith(PENDING);
 
 export const clinic = {
   name: 'Luxury Smile',
-  tagline: 'Clínica dental y estética',
+  tagline: 'Clínica dental',
   address: '[Pendiente: dirección completa]',
   phone: '[Pendiente: teléfono]',
   // Formato internacional sin espacios para el enlace tel:, p. ej. "+34600000000".
@@ -35,15 +32,13 @@ export interface Treatment {
   id: string;
   name: string;
   description: string;
-  group: 'Odontología' | 'Estética' | 'Acompañamiento';
+  group: 'Odontología' | 'Acompañamiento';
   image: ImageMetadata;
-  href: string;
 }
 
 // Tratamientos que ofrece la clínica. Las fotos viven en src/assets/treatments y Astro
 // las optimiza en el build (tamaños y formato), así que pueden subirse en cualquier tamaño.
-// `href` apunta al detalle de cada tratamiento; mientras no existan páginas propias,
-// lleva al bloque de contacto para pedir información.
+// La landing solo muestra tratamientos dentales: no incluir aquí medicina estética.
 export const treatments: Treatment[] = [
   {
     id: 'limpieza-bucal',
@@ -51,7 +46,6 @@ export const treatments: Treatment[] = [
     description: 'Higiene profesional para eliminar placa y sarro y mantener encías sanas.',
     group: 'Odontología',
     image: limpiezaBucal,
-    href: '#contacto',
   },
   {
     id: 'ortodoncia',
@@ -59,7 +53,6 @@ export const treatments: Treatment[] = [
     description: 'Brackets para alinear los dientes y corregir la mordida de forma progresiva.',
     group: 'Odontología',
     image: ortodoncia,
-    href: '#contacto',
   },
   {
     id: 'exodoncia',
@@ -67,7 +60,6 @@ export const treatments: Treatment[] = [
     description: 'Extracción dental planificada y realizada con cuidado para tu comodidad.',
     group: 'Odontología',
     image: exodoncia,
-    href: '#contacto',
   },
   {
     id: 'implantes',
@@ -75,31 +67,6 @@ export const treatments: Treatment[] = [
     description: 'Reposición de piezas perdidas con implantes y, cuando hace falta, regeneración del hueso.',
     group: 'Odontología',
     image: implantes,
-    href: '#contacto',
-  },
-  {
-    id: 'limpieza-facial',
-    name: 'Limpieza facial',
-    description: 'Limpieza profunda de la piel para retirar impurezas y devolverle luminosidad.',
-    group: 'Estética',
-    image: limpiezaFacial,
-    href: '#contacto',
-  },
-  {
-    id: 'microneedling',
-    name: 'Microneedling',
-    description: 'Microperforaciones controladas que estimulan la regeneración natural de la piel.',
-    group: 'Estética',
-    image: microneedling,
-    href: '#contacto',
-  },
-  {
-    id: 'botox',
-    name: 'Botox',
-    description: 'Tratamiento con toxina botulínica para suavizar las líneas de expresión.',
-    group: 'Estética',
-    image: botox,
-    href: '#contacto',
   },
   {
     id: 'seguimiento',
@@ -107,6 +74,5 @@ export const treatments: Treatment[] = [
     description: 'Revisiones y control de tu evolución después de cada tratamiento.',
     group: 'Acompañamiento',
     image: seguimiento,
-    href: '#contacto',
   },
 ];

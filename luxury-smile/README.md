@@ -1,6 +1,6 @@
 # Luxury Smile · Landing
 
-Landing de la clínica con un recorrido **scroll-world**: la posición del scroll controla el tiempo de 7 clips encadenados (la cámara se mueve dentro del vídeo; el texto es HTML aparte).
+Landing de la clínica con un recorrido **scroll-world**: la posición del scroll controla el tiempo de 6 clips encadenados (la cámara se mueve dentro del vídeo; el texto es HTML aparte).
 
 ## Comandos (pnpm)
 
@@ -25,12 +25,12 @@ pnpm preview
 | Motor de scroll (adaptado de la skill scroll-world) | `src/scripts/scroll-world.js` |
 | Montaje del recorrido, tema y fallback sin JS | `src/components/ScrollWorld.astro` |
 | Layout común: meta/SEO, fuente, estilos globales y animación de entrada de secciones | `src/layouts/Layout.astro` |
-| Secciones normales: frase, tratamientos, contacto, pie | `src/components/*.astro` |
+| Secciones normales: frase, tratamientos, pie | `src/components/*.astro` |
 | Páginas legales y 404 | `src/pages/aviso-legal.astro`, `privacidad.astro`, `404.astro` |
 
 Antes de publicar, cambia `site` en `astro.config.mjs` por el dominio real (se usa en `og:image` y en la URL canónica).
 
-Los valores que empiezan por `[Pendiente` se muestran marcados en la web hasta que se sustituyan por los datos reales. El botón «Contactar con la clínica» queda deshabilitado hasta que haya `phoneHref` o un email real.
+La landing solo muestra los tratamientos dentales: no hay sección de contacto ni botones para pedir cita.
 
 ## Vídeos
 

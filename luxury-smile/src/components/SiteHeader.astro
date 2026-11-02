@@ -7,7 +7,6 @@ import { clinic } from '../data/clinic';
 const links = [
 	{ href: '#top', label: 'Recorrido', section: 'world' },
 	{ href: '#tratamientos', label: 'Tratamientos', section: 'tratamientos' },
-	{ href: '#contacto', label: 'Contacto', section: 'contacto' },
 ];
 ---
 
@@ -25,7 +24,6 @@ const links = [
 				))
 			}
 		</nav>
-		<a class="header__cta link-arrow" href="#contacto">Pedir cita</a>
 		<button
 			class="header__toggle"
 			type="button"
@@ -49,9 +47,6 @@ const links = [
 				</a>
 			))
 		}
-		<a class="menu__cta btn" href="#contacto" style={`--i: ${links.length}`}>
-			Pedir cita
-		</a>
 	</nav>
 </div>
 
@@ -175,22 +170,6 @@ const links = [
 		background: color-mix(in srgb, var(--ink) 10%, transparent);
 	}
 
-	.header__cta {
-		padding: 8px 16px;
-		border-radius: 9999px;
-		background: var(--accent);
-		color: var(--accent-ink);
-		transition: transform 300ms var(--ease);
-	}
-
-	.header__cta:hover {
-		transform: translateY(-2px);
-	}
-
-	.header__cta:active {
-		transform: scale(0.98);
-	}
-
 	.header__toggle {
 		display: none;
 	}
@@ -221,8 +200,7 @@ const links = [
 		width: 100%;
 	}
 
-	.menu__link,
-	.menu__cta {
+	.menu__link {
 		opacity: 0;
 		transform: translateY(24px);
 		transition:
@@ -231,8 +209,7 @@ const links = [
 		transition-delay: calc(var(--i) * 60ms);
 	}
 
-	.menu.is-open .menu__link,
-	.menu.is-open .menu__cta {
+	.menu.is-open .menu__link {
 		opacity: 1;
 		transform: none;
 	}
@@ -249,10 +226,6 @@ const links = [
 		text-decoration: none;
 	}
 
-	.menu__cta {
-		margin-top: 16px;
-	}
-
 	@media (max-width: 860px) {
 		.header {
 			top: 12px;
@@ -260,10 +233,6 @@ const links = [
 
 		.header__nav {
 			display: none;
-		}
-
-		.header__cta {
-			padding: 8px 12px;
 		}
 
 		/* Con el menú abierto la página de detrás no se desplaza. */
@@ -322,8 +291,7 @@ const links = [
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.menu__link,
-		.menu__cta {
+		.menu__link {
 			transform: none;
 			transition-delay: 0ms;
 		}
