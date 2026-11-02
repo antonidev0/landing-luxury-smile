@@ -13,10 +13,7 @@ export const isPending = (value: string) => value.startsWith(PENDING);
 
 export const clinic = {
   name: 'Luxury Smile',
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  tagline: 'Clínica dental y estética',
+  tagline: 'Clínica dental',
   address: 'Porlamar, Nueva Esparta',
   phone: '0414-1111111',
   // Formato internacional sin espacios para el enlace tel: (Venezuela, +58).
@@ -25,19 +22,6 @@ export const clinic = {
   // `days` es opcional: si se deja vacío solo se muestra el horario.
   hours: [{ days: '', time: '8:00 am a 8:00 pm' }],
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Porlamar%2C%20Nueva%20Esparta%2C%20Venezuela',
-=======
->>>>>>> 33745f5
-  tagline: 'Clínica dental',
-  address: '[Pendiente: dirección completa]',
-  phone: '[Pendiente: teléfono]',
-  // Formato internacional sin espacios para el enlace tel:, p. ej. "+34600000000".
-  phoneHref: '',
-  email: '[Pendiente: email de contacto]',
-  hours: [
-    { days: '[Pendiente: días]', time: '[Pendiente: horario]' },
-  ],
-  mapsUrl: '',
->>>>>>> 415a6f7 (Subir archivos de la landing)
   social: [
     // { label: 'Instagram', href: 'https://instagram.com/...' },
   ] as { label: string; href: string }[],

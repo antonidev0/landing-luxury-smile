@@ -28,10 +28,10 @@ pnpm preview
 | Secciones normales: frase, tratamientos, pie | `src/components/*.astro` |
 | Páginas legales y 404 | `src/pages/aviso-legal.astro`, `privacidad.astro`, `404.astro` |
 
+La landing solo muestra los tratamientos dentales: no hay sección de contacto ni botones para pedir cita.
+
 ## Publicar en Vercel
 
-<<<<<<< HEAD
-=======
 El proyecto vive en la subcarpeta `luxury-smile/` del repositorio. En Vercel:
 
 1. **Add New → Project** e importa el repositorio `landing-luxury-smile`.
@@ -41,9 +41,6 @@ El proyecto vive en la subcarpeta `luxury-smile/` del repositorio. En Vercel:
 La URL canónica y `og:image` usan el dominio de producción que asigna Vercel. Si conectas un dominio propio, añade la variable de entorno `SITE_URL` (por ejemplo `https://luxurysmile.com`) en **Settings → Environment Variables** y vuelve a desplegar.
 
 `vercel.json` también da caché larga a `/_astro/*` (nombres con hash) y de una semana a `/videos/*`. `.vercelignore` deja fuera `higgs/` y `clips/`, que no se publican.
-
->>>>>>> 33745f5
-La landing solo muestra los tratamientos dentales: no hay sección de contacto ni botones para pedir cita.
 
 ## Vídeos
 
