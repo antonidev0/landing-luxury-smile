@@ -35,7 +35,13 @@ const pending = (v: string) => (isPending(v) ? 'pending' : undefined);
 			<div>
 				<dt>Dirección</dt>
 				<dd class={pending(clinic.address)}>
-					{clinic.mapsUrl ? <a href={clinic.mapsUrl}>{clinic.address}</a> : clinic.address}
+					{clinic.mapsUrl ? (
+						<a href={clinic.mapsUrl} target="_blank" rel="noopener">
+							{clinic.address}
+						</a>
+					) : (
+						clinic.address
+					)}
 				</dd>
 			</div>
 			<div>
@@ -54,8 +60,8 @@ const pending = (v: string) => (isPending(v) ? 'pending' : undefined);
 				<dt>Horario</dt>
 				{
 					clinic.hours.map((h) => (
-						<dd class={pending(h.days)}>
-							{h.days} · {h.time}
+						<dd class={pending(h.days || h.time)}>
+							{h.days ? `${h.days} · ${h.time}` : h.time}
 						</dd>
 					))
 				}

@@ -282,14 +282,45 @@ import { scenes } from '../data/scenes';
 		z-index: 15;
 		pointer-events: none;
 		opacity: 0;
+		visibility: hidden;
 		background: color-mix(in srgb, var(--bg) 72%, transparent);
-		backdrop-filter: blur(32px) saturate(1.2);
-		-webkit-backdrop-filter: blur(32px) saturate(1.2);
-		transition: opacity 700ms var(--ease);
+		transition:
+			opacity 700ms var(--ease),
+			visibility 700ms;
 	}
 
+	/* El desenfoque solo existe mientras la capa se ve: una capa a pantalla completa con
+	   backdrop-filter y opacidad 0 deja bandas oscuras en el borde al hacer scroll. */
 	.sw-root.sw-done .world-scrim {
 		opacity: 1;
+		visibility: visible;
+		backdrop-filter: blur(32px) saturate(1.2);
+		-webkit-backdrop-filter: blur(32px) saturate(1.2);
+	}
+
+	/* Las capas fijas usan el alto del viewport grande: en móvil, al esconderse la barra
+	   del navegador con el primer scroll, ya no queda una franja vacía abajo. */
+	.sw-sky,
+	.sw-stage,
+	.world-scrim {
+		bottom: auto;
+		height: 100vh;
+		height: 100lvh;
+	}
+
+	/* Los pósters aparecen con un fundido cuando están decodificados del todo, en vez de
+	   pintarse por franjas mientras se descargan. */
+	.sw-scene__still {
+		opacity: 0;
+		transition: opacity 300ms var(--ease);
+	}
+
+	.sw-scene__still.is-ready {
+		opacity: 1;
+	}
+
+	.sw-scene.has-clip .sw-scene__still {
+		opacity: 0;
 	}
 
 	.sw-copylayer,

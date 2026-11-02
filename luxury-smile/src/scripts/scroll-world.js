@@ -73,7 +73,9 @@
        translateY(-50%) that centres each panel vertically.
      - sections[].clipFallback: optional H.264 MP4 used when the browser can't play VP9 WebM.
      - config.doneAt: viewport-heights past the last clip at which `sw-done` is added (default 0.6).
-     - The first scene's poster loads eagerly with high fetch priority (it is the LCP).
+     - Posters load eagerly (the first with high fetch priority, it is the LCP) and get
+       `is-ready` once decoded, so the page CSS can fade them in instead of showing
+       partially downloaded images.
    ========================================================================== */
 
 export function mountScrollWorld(container, config) {
@@ -155,10 +157,14 @@ export function mountScrollWorld(container, config) {
   SEGMENTS.forEach(s => {
     const scene = el('div', 'sw-scene'); scene.style.setProperty('--sw-accent', s.accent || '');
     const img = el('img', 'sw-scene__still'); img.alt = ''; img.decoding = 'async';
-    // The first poster is the hero (LCP): load it eagerly; the rest stay lazy.
-    if (s === SEGMENTS[0]) img.fetchPriority = 'high'; else img.loading = 'lazy';
+    // Posters are small: load them all eagerly (the hero first) so a scene never shows a
+    // half-downloaded image, and only reveal each one once it is fully decoded.
+    img.fetchPriority = (s === SEGMENTS[0]) ? 'high' : 'low';
+    const reveal = () => img.classList.add('is-ready');
+    img.addEventListener('load', () => { (img.decode ? img.decode() : Promise.resolve()).then(reveal, reveal); }, { once: true });
     const poster = (isMobile() && s.stillM) ? s.stillM : s.still;
     if (poster) img.src = poster;
+    if (img.complete && img.naturalWidth) reveal();
     scene.appendChild(img); stage.appendChild(scene);
     s.el = scene; s.img = img; s.video = null; s.hasClip = false;
     s.loading = false; s.ready = false; s.cur = 0; s.target = 0; s.visible = false;
