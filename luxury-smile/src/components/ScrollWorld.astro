@@ -334,12 +334,16 @@ import { scenes } from '../data/scenes';
 	}
 
 	@media (max-width: 860px) {
-		/* Panel compacto anclado abajo para dejar ver el vídeo. En móvil ocupa todo el
-		   ancho, así que no se alterna de lado. */
+		/* Panel compacto centrado en la pantalla. En móvil ocupa todo el ancho, así que
+		   no se alterna de lado. */
 		.sw-copy,
 		.sw-copy--right {
 			left: clamp(18px, 5vw, 64px);
 			right: clamp(18px, 5vw, 64px);
+			top: 50%;
+			bottom: auto;
+			transform: translateY(-50%);
+			margin: 0 auto;
 			width: auto;
 			max-width: 560px;
 			padding: 24px;
