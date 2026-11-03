@@ -19,7 +19,7 @@ export interface Scene {
   };
 }
 
-export const scenes: Scene[] = [
+const allScenes: Scene[] = [
   {
     id: 'bienvenida',
     label: 'Bienvenida',
@@ -94,3 +94,14 @@ export const scenes: Scene[] = [
     },
   },
 ];
+
+// Beta: el recorrido termina en el clip 3. Para volver al recorrido completo, pon
+// BETA_SCENES = allScenes.length (o quita el recorte).
+const BETA_SCENES = 3;
+
+export const scenes: Scene[] = allScenes.slice(0, BETA_SCENES).map((scene, i, list) =>
+  // La última escena visible cierra el recorrido con el botón a los tratamientos.
+  i === list.length - 1 && !scene.cta
+    ? { ...scene, cta: { primary: { label: 'Ver tratamientos', href: '#tratamientos' } } }
+    : scene,
+);
