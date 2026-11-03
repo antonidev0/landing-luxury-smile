@@ -109,6 +109,13 @@ import { scenes } from '../data/scenes';
 		box-sizing: border-box;
 	}
 
+	/* Las tarjetas se alternan: izquierda, derecha, izquierda… La de la derecha deja
+	   sitio a los puntos de navegación del borde derecho. */
+	.sw-copy--right {
+		left: auto;
+		right: clamp(72px, 9vw, 140px);
+	}
+
 	/* Numeración de escena: «01 / 07» en versalitas con un filete. */
 	.sw-copy__num {
 		display: flex;
@@ -351,8 +358,12 @@ import { scenes } from '../data/scenes';
 			display: none;
 		}
 
-		/* Panel compacto anclado abajo para dejar ver el vídeo. */
-		.sw-copy {
+		/* Panel compacto anclado abajo para dejar ver el vídeo. En móvil ocupa todo el
+		   ancho, así que no se alterna de lado. */
+		.sw-copy,
+		.sw-copy--right {
+			left: clamp(18px, 5vw, 64px);
+			right: clamp(18px, 5vw, 64px);
 			width: auto;
 			max-width: 560px;
 			padding: 24px;
