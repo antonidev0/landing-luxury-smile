@@ -17,8 +17,7 @@ pnpm preview
 | Qué | Archivo |
 |---|---|
 | Dominio público (`site`) y fuente Manrope autoalojada | `astro.config.mjs` |
-| Datos de la clínica (dirección, teléfono, horario, email, redes) y tratamientos | `src/data/clinic.ts` |
-| Fotos de los tratamientos (Astro las optimiza en el build) | `src/assets/treatments/` |
+| Datos de la clínica (dirección, teléfono, horario, email, redes), especialidades y servicios | `src/data/clinic.ts` |
 | Logo de la cabecera (SVG, toma el color del texto) | `src/assets/brand/logo.svg` |
 | Cabecera flotante con navegación | `src/components/SiteHeader.astro` |
 | Escenas del recorrido: clip, textos, ritmo de scroll | `src/data/scenes.ts` |
