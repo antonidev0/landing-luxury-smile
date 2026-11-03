@@ -32,5 +32,22 @@ export default defineConfig({
 				],
 			},
 		},
+		// Luxurious Roman (SIL Open Font License 1.1, ver src/assets/fonts/LuxuriousRoman-OFL.txt)
+		// para los titulares: romana de exhibición que da el toque de lujo.
+		{
+			provider: fontProviders.local(),
+			name: 'Luxurious Roman',
+			cssVariable: '--font-luxurious-roman',
+			fallbacks: ['Georgia', 'serif'],
+			options: {
+				variants: [
+					{
+						src: ['./src/assets/fonts/LuxuriousRoman-Regular.woff2'],
+						weight: '400',
+						style: 'normal',
+					},
+				],
+			},
+		},
 	],
 });
