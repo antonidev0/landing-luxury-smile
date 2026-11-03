@@ -173,7 +173,8 @@ export function mountScrollWorld(container, config) {
   // per-section copy / route / nav
   const copies = [], dots = [];
   SECTIONS.forEach((s, i) => {
-    const c = el('article', 'sw-copy'); c.style.setProperty('--sw-accent', s.accent || '');
+    // Panels alternate sides: even scenes on the left, odd scenes on the right.
+    const c = el('article', 'sw-copy ' + (i % 2 ? 'sw-copy--right' : 'sw-copy--left')); c.style.setProperty('--sw-accent', s.accent || '');
     if (s.id) c.id = 'escena-' + s.id;
     const h = (i === 0 && config.firstHeading === 'h1') ? 'h1' : 'h2';
     c.innerHTML =
