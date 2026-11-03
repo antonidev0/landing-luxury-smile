@@ -109,11 +109,10 @@ import { scenes } from '../data/scenes';
 		box-sizing: border-box;
 	}
 
-	/* Las tarjetas se alternan: izquierda, derecha, izquierda… La de la derecha deja
-	   sitio a los puntos de navegación del borde derecho. */
+	/* Las tarjetas se alternan: izquierda, derecha, izquierda… */
 	.sw-copy--right {
 		left: auto;
-		right: clamp(72px, 9vw, 140px);
+		right: clamp(18px, 5vw, 64px);
 	}
 
 	/* Numeración de escena: «01 / 07» en versalitas con un filete. */
@@ -155,12 +154,16 @@ import { scenes } from '../data/scenes';
 		text-shadow: none;
 	}
 
-	h1.sw-copy__title {
-		font-size: 4.5rem;
+	/* Todas las tarjetas con el mismo color: título en degradado dorado. */
+	.sw-copy__title {
 		background: var(--gold-gradient);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
+	}
+
+	h1.sw-copy__title {
+		font-size: 4.5rem;
 	}
 
 	.sw-copy__body {
@@ -239,34 +242,12 @@ import { scenes } from '../data/scenes';
 		transform: scale(0.98);
 	}
 
-	/* Riel lateral y barra de progreso: hilos finos, sin peso visual. */
-	.sw-route::before {
-		width: 1px;
-		background: var(--ink);
-		opacity: 0.2;
+	/* Sin puntos de navegación lateral: el recorrido se avanza solo con scroll. */
+	.sw-route {
+		display: none;
 	}
 
-	.sw-route__label {
-		font-size: 0.75rem;
-		line-height: 1rem;
-		font-weight: 500;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--ink);
-		background: var(--glass);
-		border-color: var(--line);
-	}
-
-	.sw-route__dot i {
-		width: 6px;
-		height: 6px;
-		background: color-mix(in srgb, var(--ink) 40%, transparent);
-	}
-
-	.sw-route__dot.is-active i {
-		box-shadow: 0 0 0 4px color-mix(in srgb, var(--sw-accent) 20%, transparent);
-	}
-
+	/* Barra de progreso: hilo fino, sin peso visual. */
 	.sw-scrollbar {
 		height: 2px;
 		background: transparent;
@@ -353,11 +334,6 @@ import { scenes } from '../data/scenes';
 	}
 
 	@media (max-width: 860px) {
-		/* En móvil basta la barra de progreso superior: los puntos tapaban el texto. */
-		.sw-route {
-			display: none;
-		}
-
 		/* Panel compacto anclado abajo para dejar ver el vídeo. En móvil ocupa todo el
 		   ancho, así que no se alterna de lado. */
 		.sw-copy,
